@@ -29,6 +29,16 @@ public class BookStore implements Externalizable {
     }
 
     @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(name).append(" ").append(type);
+        for (Book b : books) {
+            sb.append(" ").append(b);
+        }
+        return(sb.toString());
+    }
+
+    @Override
     public void writeExternal(ObjectOutput out) throws IOException {
         out.writeObject(name);
         out.writeObject(type);

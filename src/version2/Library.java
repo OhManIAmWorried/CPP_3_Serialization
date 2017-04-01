@@ -20,6 +20,19 @@ public class Library implements Serializable {
         this.bookReaders = bookReaders;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(name);
+        for (BookStore bs : bookStores) {
+            sb.append(" ").append(bs);
+        }
+        for (BookReader br : bookReaders) {
+            sb.append(" ").append(br);
+        }
+        return sb.toString();
+    }
+
     private void writeObject(ObjectOutputStream out) throws IOException {
         out.defaultWriteObject();
         out.writeInt(bookStores.size());
@@ -37,6 +50,10 @@ public class Library implements Serializable {
                     out.writeObject(a.getSurname());
                 }
             }
+        }
+        out.writeInt(bookReaders.size());
+        for (BookReader br: bookReaders) {
+            out.writeObject(br);
         }
     }
 

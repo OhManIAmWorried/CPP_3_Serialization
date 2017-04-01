@@ -20,6 +20,16 @@ public class BookStore implements Serializable {
         this.books = books;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(name).append(" ").append(type);
+        for (Book b : books) {
+            sb.append(" ").append(b);
+        }
+        return(sb.toString());
+    }
+
     private void writeObject(ObjectOutputStream out) throws IOException {
         out.defaultWriteObject();
         out.writeInt(books.size());

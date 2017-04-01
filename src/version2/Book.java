@@ -9,7 +9,7 @@ import java.util.ArrayList;
 /**
  * Created by Oly on 26.03.2017.
  */
-public class Book implements Serializable {
+public class Book /*implements Serializable*/ {
     private transient String title;
     private transient ArrayList<Author> authors;
     private int year;
@@ -22,6 +22,17 @@ public class Book implements Serializable {
         this.version = version;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(title);
+        for (Author a : authors) {
+            sb.append(" ").append(a);
+        }
+        sb.append(" ").append(year).append(" ").append(version);
+        return sb.toString();
+    }
+/*
     private void writeObject(ObjectOutputStream out) throws IOException {
         out.defaultWriteObject();
         out.writeObject(title);
@@ -41,7 +52,7 @@ public class Book implements Serializable {
             authors.add(new Author((String)in.readObject(),(String)in.readObject()));
         }
     }
-
+*/
     public String getTitle() {
         return title;
     }

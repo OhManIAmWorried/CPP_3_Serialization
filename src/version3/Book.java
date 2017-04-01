@@ -24,6 +24,17 @@ public class Book implements Externalizable {
         version = -1;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(title);
+        for (Author a : authors) {
+            sb.append(" ").append(a);
+        }
+        sb.append(" ").append(year).append(" ").append(version);
+        return sb.toString();
+    }
+
     public Book(String title, ArrayList<Author> authors, int year, int version) {
         this.title = title;
         this.authors = authors;

@@ -6,8 +6,8 @@ import java.io.*;
  * Created by Oly on 26.03.2017.
  */
 public class LibraryDriver {
-    private final String fileName = "file.txt";
-    public static void serializeObject(String fileName, Object obj){
+    private static final String fileName = "file2.txt";
+    public static void serializeObject(Object obj){
         try {
             ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(fileName));
             os.writeObject(obj);
@@ -18,7 +18,7 @@ public class LibraryDriver {
             e.printStackTrace();
         }
     }
-    public static Object deSerializeObject(String fileName){
+    public static Object deSerializeObject(){
         Object obj = null;
         try {
             ObjectInputStream is = new ObjectInputStream(new FileInputStream(fileName));

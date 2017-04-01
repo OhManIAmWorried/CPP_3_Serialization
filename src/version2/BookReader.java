@@ -9,10 +9,10 @@ import java.util.ArrayList;
 /**
  * Created by Oly on 26.03.2017.
  */
-public class BookReader extends Human implements Serializable {
+public class BookReader extends Human /*implements Serializable*/ {
     private int registrationID;
     private transient ArrayList<Book> booksInUse;
-
+/*
     private void writeObject(ObjectOutputStream out) throws IOException {
         out.defaultWriteObject();
         out.writeObject(super.getName());
@@ -48,11 +48,21 @@ public class BookReader extends Human implements Serializable {
             booksInUse.add(new Book(title,authors,year,version));
         }
     }
-
+*/
     public BookReader(String name, String surname, int registrationID, ArrayList<Book> booksInUse) {
         super(name,surname);
         this.registrationID = registrationID;
         this.booksInUse = booksInUse;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(super.toString()).append(" ").append(registrationID);
+        for (Book b : booksInUse) {
+            sb.append(" ").append(b);
+        }
+        return sb.toString();
     }
 
     public int getRegistrationID() {

@@ -28,6 +28,16 @@ public class BookReader extends Human implements Externalizable {
     }
 
     @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(super.toString()).append(" ").append(registrationID);
+        for (Book b : booksInUse) {
+            sb.append(" ").append(b);
+        }
+        return sb.toString();
+    }
+
+    @Override
     public void writeExternal(ObjectOutput out) throws IOException {
         super.writeExternal(out);
         out.writeInt(registrationID);

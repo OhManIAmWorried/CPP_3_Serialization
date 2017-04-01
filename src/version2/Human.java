@@ -17,6 +17,13 @@ public class Human implements Serializable {
         this.surname = surname;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(name).append(" ").append(surname);
+        return sb.toString();
+    }
+
     private void writeObject(ObjectOutputStream out) throws IOException {
         out.defaultWriteObject();
     }

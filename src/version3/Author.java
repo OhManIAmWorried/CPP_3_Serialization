@@ -28,4 +28,11 @@ public class Author extends Human implements Externalizable {
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
         super.readExternal(in);
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(super.getName()).append(" ").append(super.getSurname());
+        return sb.toString();
+    }
 }

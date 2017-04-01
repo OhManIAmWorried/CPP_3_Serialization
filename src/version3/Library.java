@@ -16,6 +16,25 @@ public class Library implements Externalizable {
     private ArrayList<BookStore> bookStores;
     private ArrayList<BookReader> bookReaders;
 
+    public Library() {
+        name = "DefaultName";
+        bookStores = new ArrayList<BookStore>();
+        bookReaders = new ArrayList<BookReader>();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(name);
+        for (BookStore bs : bookStores) {
+            sb.append(" ").append(bs);
+        }
+        for (BookReader br : bookReaders) {
+            sb.append(" ").append(br);
+        }
+        return sb.toString();
+    }
+
     public String getName() {
         return name;
     }
