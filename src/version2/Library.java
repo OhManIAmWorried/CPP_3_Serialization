@@ -53,7 +53,20 @@ public class Library implements Serializable {
         }
         out.writeInt(bookReaders.size());
         for (BookReader br: bookReaders) {
-            out.writeObject(br);
+            out.writeObject(br.getName());
+            out.writeObject(br.getSurname());
+            out.writeInt(br.getRegistrationID());
+            out.writeInt(br.getBooksInUse().size());
+            for (Book b : br.getBooksInUse()) {
+                out.writeObject(b.getTitle());
+                out.writeInt(b.getVersion());
+                out.writeInt(b.getYear());
+                out.writeInt(b.getAuthors().size());
+                for (Author a : b.getAuthors()) {
+                    out.writeObject(a.getName());
+                    out.writeObject(a.getSurname());
+                }
+            }
         }
     }
 
@@ -78,6 +91,27 @@ public class Library implements Serializable {
                 books.add(new Book(title,authors,year,version));
             }
             bookStores.add(new BookStore(name,type,books));
+        }
+        int bookReadersSize = in.readInt();
+        bookReaders = new ArrayList<BookReader>();
+        for (int i = 0; i < bookReadersSize; i++) {
+            String name = (String)in.readObject();
+            String surname = (String)in.readObject();
+            int registrationID = in.readInt();
+            int booksInUseSize = in.readInt();
+            ArrayList<Book> booksInUse = new ArrayList<>();
+            for (int j = 0; j < booksInUseSize; j++) {
+                String title = (String)in.readObject();
+                int version = in.readInt();
+                int year = in.readInt();
+                int authorsSize = in.readInt();
+                ArrayList<Author> authors = new ArrayList<>();
+                for (int k = 0; k < authorsSize; k++) {
+                    authors.add(new Author((String)in.readObject(),(String)in.readObject()));
+                }
+                booksInUse.add(new Book(title,authors,year,version));
+            }
+            bookReaders.add(new BookReader(name,surname,registrationID,booksInUse));
         }
     }
 

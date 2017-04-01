@@ -1,15 +1,11 @@
 package version2;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by Oly on 26.03.2017.
  */
-public class Book /*implements Serializable*/ {
+public class Book {
     private transient String title;
     private transient ArrayList<Author> authors;
     private int year;
@@ -32,27 +28,7 @@ public class Book /*implements Serializable*/ {
         sb.append(" ").append(year).append(" ").append(version);
         return sb.toString();
     }
-/*
-    private void writeObject(ObjectOutputStream out) throws IOException {
-        out.defaultWriteObject();
-        out.writeObject(title);
-        out.writeInt(authors.size());
-        for (Author author : authors) {
-            out.writeObject(author.getName());
-            out.writeObject(author.getSurname());
-        }
-    }
 
-    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
-        in.defaultReadObject();
-        title = (String)in.readObject();
-        int authorsSize = in.readInt();
-        authors = new ArrayList<Author>();
-        for (int i = 0; i < authorsSize; i++) {
-            authors.add(new Author((String)in.readObject(),(String)in.readObject()));
-        }
-    }
-*/
     public String getTitle() {
         return title;
     }
