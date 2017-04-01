@@ -89,7 +89,40 @@ public class MainFrame {
     }
 
     private static void testVersion3(){
-
+        System.out.println("Testing version3");
+        version3.Author a1 = new version3.Author("name1","surname1");
+        version3.Author a2 = new version3.Author("name2","surname2");
+        version3.Author a3 = new version3.Author("name3","surname3");
+        ArrayList<version3.Author> authors = new ArrayList<>();
+        authors.add(a1);
+        authors.add(a2);
+        authors.add(a3);
+        version3.Book b1 = new version3.Book("book1",authors,1998,1);
+        version3.Book b2 = new version3.Book("book2",authors,1999,1);
+        version3.Book b3 = new version3.Book("book3",authors,2000,1);
+        ArrayList<version3.Book> books = new ArrayList<>();
+        books.add(b1);
+        books.add(b2);
+        books.add(b3);
+        version3.BookReader br1 = new version3.BookReader("name1","surname1",1,books);
+        version3.BookReader br2 = new version3.BookReader("name2","surname2",2,books);
+        version3.BookReader br3 = new version3.BookReader("name3","surname3",3,books);
+        ArrayList<version3.BookReader> bookReaders = new ArrayList<>();
+        bookReaders.add(br1);
+        bookReaders.add(br2);
+        bookReaders.add(br3);
+        version3.BookStore bs1 = new version3.BookStore("BookStore1","type1",books);
+        version3.BookStore bs2 = new version3.BookStore("BookStore2","type2",books);
+        version3.BookStore bs3 = new version3.BookStore("BookStore3","type3",books);
+        ArrayList<version3.BookStore> bookStores = new ArrayList<>();
+        bookStores.add(bs1);
+        bookStores.add(bs2);
+        bookStores.add(bs3);
+        version3.Library lib = new version3.Library("library",bookStores,bookReaders);
+        version3.LibraryDriver ld = new version3.LibraryDriver();
+        System.out.println(lib);
+        ld.serializeObject(lib);
+        System.out.println(ld.deSerializeObject());
     }
 
 }

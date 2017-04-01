@@ -52,7 +52,8 @@ public class BookStore implements Externalizable {
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
         name = (String)in.readObject();
         type = (String)in.readObject();
-        for (int i = 0; i < in.readInt(); i++) {
+        int booksSize = in.readInt();
+        for (int i = 0; i < booksSize; i++) {
             Book b = new Book();
             b.readExternal(in);
             books.add(b);

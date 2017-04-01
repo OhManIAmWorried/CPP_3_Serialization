@@ -22,6 +22,12 @@ public class Library implements Externalizable {
         bookReaders = new ArrayList<BookReader>();
     }
 
+    public Library(String name, ArrayList<BookStore> bookStores, ArrayList<BookReader> bookReaders) {
+        this.name = name;
+        this.bookStores = bookStores;
+        this.bookReaders = bookReaders;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -83,12 +89,14 @@ public class Library implements Externalizable {
     @Override
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
         name = (String)in.readObject();
-        for (int i = 0; i < in.readInt(); i++) {
+        int bookStoresSize = in.readInt();
+        for (int i = 0; i < bookStoresSize; i++) {
             BookStore bs = new BookStore();
             bs.readExternal(in);
             bookStores.add(bs);
         }
-        for (int i = 0; i < in.readInt(); i++) {
+        int bookReadersSize = in.readInt();
+        for (int i = 0; i < bookReadersSize; i++) {
             BookReader br = new BookReader();
             br.readExternal(in);
             bookReaders.add(br);
